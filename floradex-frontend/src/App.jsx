@@ -12,6 +12,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ScrollToTop from './components/layout/ScrollToTop/ScrollToTop';
 import styles from './App.module.css';
 
+// import { render, screen } from '@testing-library/react';
+
+
 function App() {
   const currentUser = useSelector(state => state.auth.user);
 
