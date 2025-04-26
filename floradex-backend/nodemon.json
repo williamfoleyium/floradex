@@ -1,0 +1,7 @@
+{
+    "env": {
+      "MONGODB_URI": "mongodb://localhost:27017/plant-care-db",
+      "PORT": "5000"
+    }
+  }
+  

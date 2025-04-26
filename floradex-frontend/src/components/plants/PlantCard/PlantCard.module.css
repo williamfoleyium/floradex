@@ -1,0 +1,125 @@
+.cardLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .imageContainer {
+    position: relative;
+    padding-top: 75%; /* 4:3 aspect ratio */
+  }
+  
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .careLevel {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .easy {
+    background-color: #48BB78;
+  }
+  
+  .moderate {
+    background-color: #ECC94B;
+  }
+  
+  .expert {
+    background-color: #F56565;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D3748;
+  }
+  
+  .scientificName {
+    margin: 4px 0 12px;
+    font-size: 14px;
+    font-style: italic;
+    color: #718096;
+  }
+  
+  .careInfo {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .careItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #4A5568;
+  }
+  
+  .careIcon {
+    font-size: 16px;
+  }
+  
+  .lastWatered {
+    font-size: 14px;
+    color: #718096;
+    margin: 8px 0;
+  }
+  
+  .actionButton {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .add {
+    background-color: #2F855A;
+    color: white;
+  }
+  
+  .add:hover {
+    background-color: #276749;
+  }
+  
+  .remove {
+    background-color: #F56565;
+    color: white;
+  }
+  
+  .remove:hover {
+    background-color: #E53E3E;
+  }

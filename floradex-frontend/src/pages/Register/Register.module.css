@@ -1,0 +1,126 @@
+/* src/pages/Register/Register.module.css */
+.registerContainer {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .heading h1 {
+    color: #2e7d32; /* Green shade matching plant theme */
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  .heading p {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .form {
+    width: 100%;
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formControl {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .formControl:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #388e3c;
+  }
+  
+  .btn:active {
+    background-color: #2e7d32;
+  }
+  
+  .error {
+    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .loading {
+    text-align: center;
+    margin: 4rem 0;
+    color: #666;
+    font-size: 1.2rem;
+  }
+  
+  .oauthContainer {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .oauthContainer p {
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  .googleBtn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #db4437;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .googleBtn:hover {
+    background-color: #c62828;
+  }
+  
+  /* Link to login page */
+  .loginLink {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #4caf50;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .loginLink:hover {
+    text-decoration: underline;
+  }

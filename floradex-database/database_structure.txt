@@ -1,0 +1,226 @@
+CREATE TABLE plant_families (
+    id SERIAL PRIMARY KEY,
+    family_name VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+
+
+CREATE TABLE plant_table (
+    id SERIAL PRIMARY KEY,
+    family_id INTEGER REFERENCES plant_families(id),
+    plant_name VARCHAR(255) NOT NULL,
+    variety_name VARCHAR(255),
+    scientific_name VARCHAR(255) NOT NULL UNIQUE,
+    plant_type VARCHAR(100) NOT NULL,
+    environmental_type VARCHAR(100),
+    yield_type VARCHAR(100),
+    flower_type VARCHAR(100),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE care_details_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    water_frequency_winter VARCHAR(100),
+    water_frequency_summer VARCHAR(100),
+    sun_requirements VARCHAR(100),
+    min_temp NUMERIC(5,2),
+    fertilizer_winter VARCHAR(100),
+    fertilizer_summer VARCHAR(100),
+    soil_type VARCHAR(100),
+    soil_ph NUMERIC(4,2),
+    humidity NUMERIC(5,2),
+    degree_days INTEGER,
+    lifecycle VARCHAR(50),
+    elevation NUMERIC(6,2)
+);
+
+
+CREATE TABLE hardiness_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    drought_resistance INTEGER CHECK (drought_resistance BETWEEN 1 AND 10),
+    heat_resistance INTEGER CHECK (heat_resistance BETWEEN 1 AND 10),
+    cold_resistance INTEGER CHECK (cold_resistance BETWEEN 1 AND 10),
+    flood_resistance INTEGER CHECK (flood_resistance BETWEEN 1 AND 10),
+    pest_resistance INTEGER CHECK (pest_resistance BETWEEN 1 AND 10),
+    light_sensitivity INTEGER CHECK (light_sensitivity BETWEEN 1 AND 10),
+    nutrient_sensitivity INTEGER CHECK (nutrient_sensitivity BETWEEN 1 AND 10)
+);
+
+
+CREATE TABLE fruit_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    type VARCHAR(100),
+    color VARCHAR(50),
+    edible BOOLEAN DEFAULT FALSE,
+    taste VARCHAR(100),
+    nutrients TEXT,
+    uses TEXT,
+    seed_type VARCHAR(100)
+);
+
+
+
+CREATE TABLE flower_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    type VARCHAR(100),
+    color VARCHAR(50),
+    edible BOOLEAN DEFAULT FALSE,
+    taste VARCHAR(100),
+    nutrients TEXT,
+    uses TEXT
+);
+
+
+
+CREATE TABLE plant_structure_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    plant_spacing NUMERIC(5,2),
+    seed_depth NUMERIC(4,2),
+    seed_germination_temp NUMERIC(5,2),
+    seed_germination_time INTEGER,
+    days_to_maturity INTEGER,
+    pruning TEXT,
+    height NUMERIC(6,2),
+    spread NUMERIC(6,2)
+);
+
+CREATE TABLE plant_health_issues (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(100),
+    life_cycle_time VARCHAR(100),
+    plant_target VARCHAR(255),
+    attack_description TEXT,
+    prevention TEXT,
+    treatment TEXT,
+    category VARCHAR(50) 
+    CHECK (category IN ('insect', 'disease', 'wildlife', 'nutrient_deficiency'))
+);
+
+
+
+CREATE TABLE description_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    origin VARCHAR(255),
+    general_description TEXT,
+    fruit_description TEXT,
+    history TEXT,
+    use TEXT,
+    toxicity BOOLEAN DEFAULT FALSE
+);
+
+
+
+CREATE TABLE companion_planting_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    companion_plant_id INTEGER REFERENCES plant_table(id),
+    relationship_type VARCHAR(50) 
+    CHECK (relationship_type IN ('beneficial', 'harmful', 'neutral'))
+);
+
+
+
+CREATE TABLE plant_images_table (
+    id SERIAL PRIMARY KEY,
+    plant_id INTEGER REFERENCES plant_table(id) ON DELETE CASCADE,
+    image_url TEXT NOT NULL,
+    image_type VARCHAR(50),
+    is_primary BOOLEAN DEFAULT FALSE
+);
+
+
+CREATE INDEX idx_plant_name ON plant_table(plant_name);
+CREATE INDEX idx_scientific_name ON plant_table(scientific_name);
+CREATE INDEX idx_plant_images ON plant_images_table(plant_id, is_primary);
+
+
+
+-- Plant Types
+CREATE TYPE plant_type_enum AS ENUM (
+    'Tree', 
+    'Shrub', 
+    'Herb', 
+    'Vine', 
+    'Grass', 
+    'Succulent', 
+    'Fern', 
+    'Vegetable', 
+    'Fruit', 
+    'Ornamental'
+);
+
+-- Environmental Types
+CREATE TYPE environmental_type_enum AS ENUM (
+    'Tropical', 
+    'Subtropical', 
+    'Temperate', 
+    'Mediterranean', 
+    'Desert', 
+    'Alpine', 
+    'Aquatic', 
+    'Boreal', 
+    'Rainforest', 
+    'Grassland'
+);
+
+-- Flower Types
+CREATE TYPE flower_type_enum AS ENUM (
+    'Composite', 
+    'Simple', 
+    'Cluster', 
+    'Spike', 
+    'Raceme', 
+    'Umbel', 
+    'Panicle', 
+    'Corymb', 
+    'Head'
+);
+
+-- Fruit Types
+CREATE TYPE fruit_type_enum AS ENUM (
+    'Berry', 
+    'Drupe', 
+    'Pome', 
+    'Pepo', 
+    'Hesperidium', 
+    'Aggregate', 
+    'Multiple', 
+    'Capsule', 
+    'Nut'
+);
+
+-- Reproduction Types
+CREATE TYPE reproduction_type_enum AS ENUM (
+    'Sexual', 
+    'Asexual', 
+    'Vegetative', 
+    'Spore', 
+    'Fragmentation', 
+    'Budding'
+);
+
+-- Pollination Types
+CREATE TYPE pollination_type_enum AS ENUM (
+    'Wind', 
+    'Insect', 
+    'Bird', 
+    'Bat', 
+    'Self-pollination', 
+    'Cross-pollination', 
+    'Water'
+);
+
+-- Usage Example
+ALTER TABLE plant_table 
+ALTER COLUMN plant_type TYPE plant_type_enum 
+USING plant_type::plant_type_enum;

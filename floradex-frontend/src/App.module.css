@@ -1,0 +1,12 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F0FFF4;  /* Light green background */
+}
+
+.main {
+  flex: 1; /* Ensures the main content takes up remaining space */
+  width: 100%; /* Ensures the main content stretches to full width */
+  padding: 2rem 1rem; /* Optional: Add padding for spacing */
+}

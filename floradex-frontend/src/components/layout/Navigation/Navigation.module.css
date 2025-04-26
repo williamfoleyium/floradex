@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #4A5568;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .link:hover {
+    color: #2F855A;
+    background-color: rgba(47, 133, 90, 0.1);
+  }
+  
+  .active {
+    color: #2F855A;
+    background-color: rgba(47, 133, 90, 0.1);
+  }
